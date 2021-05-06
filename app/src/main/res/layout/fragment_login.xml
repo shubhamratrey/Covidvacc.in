@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".views.activity.LoginActivity">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_32sdp"
+        android:fontFamily="@font/eudoxus_sans_bold"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="@string/app_name"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_24ssp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="@dimen/_32sdp"
+            android:layout_marginBottom="@dimen/_4sdp"
+            android:fontFamily="@font/eudoxus_sans_regular"
+            android:gravity="center"
+            android:text="@string/phone_number"
+            android:textColor="@color/grey2"
+            android:textSize="@dimen/_10ssp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:background="@drawable/ic_phone_bg">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_13sdp"
+                    android:fontFamily="@font/eudoxus_sans_medium"
+                    android:gravity="center"
+                    android:text="+91"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16ssp" />
+
+                <View
+                    android:layout_width="1.6dp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_gravity="end"
+                    android:background="@color/grey_phone_bg_stroke" />
+            </FrameLayout>
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etPhoneNumber"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@null"
+                android:digits="1234567890"
+                android:fontFamily="@font/eudoxus_sans_medium"
+                android:hint="00000 00000"
+                android:imeOptions="actionDone"
+                android:inputType="phone"
+                android:letterSpacing="0.1"
+                android:maxLength="14"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_10sdp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/grey1"
+                android:textSize="@dimen/_16ssp" />
+
+            <FrameLayout
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_50sdp">
+
+            </FrameLayout>
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPhoneNumberError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="@dimen/_32sdp"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:layout_marginBottom="@dimen/_22sdp"
+            android:fontFamily="@font/eudoxus_sans_regular"
+            android:gravity="center"
+            android:text="Invalid phone number! Check and type again"
+            android:textColor="@color/error_text"
+            android:textSize="@dimen/_10ssp" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/otpBtn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:background="@drawable/ic_btn_pink_bg"
+                android:elevation="0dp"
+                android:visibility="gone"
+                android:fontFamily="@font/notosans_medium"
+                android:overScrollMode="never"
+                android:paddingStart="@dimen/_30sdp"
+                android:paddingTop="@dimen/_4sdp"
+                android:paddingEnd="@dimen/_30sdp"
+                android:paddingBottom="@dimen/_4sdp"
+                android:text="@string/get_otp"
+                tools:visibility="visible"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14ssp" />
+
+            <ProgressBar
+                android:id="@+id/proceedProgress"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                android:elevation="5dp"
+                android:progressTint="@color/white"
+                android:theme="@style/ProgressWhiteTheme"
+                android:visibility="visible" />
+        </FrameLayout>
+
+
+        <LinearLayout
+            android:id="@+id/otp_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginBottom="@dimen/_4sdp"
+                    android:fontFamily="@font/eudoxus_sans_regular"
+                    android:gravity="center"
+                    android:text="Type OTP"
+                    android:textColor="@color/grey2"
+                    android:textSize="@dimen/_10ssp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/timerTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:layout_marginBottom="@dimen/_4sdp"
+                    android:fontFamily="@font/eudoxus_sans_regular"
+                    android:gravity="end"
+                    android:text="Getting OTP 29S"
+                    android:textColor="@color/grey2"
+                    android:textSize="@dimen/_10ssp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/resendTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:layout_marginBottom="@dimen/_4sdp"
+                    android:fontFamily="@font/eudoxus_sans_regular"
+                    android:gravity="end"
+                    android:visibility="gone"
+                    android:text="RESEND OTP"
+                    android:textColor="@color/blue_text"
+                    android:textSize="@dimen/_10ssp" />
+
+                <ProgressBar
+                    android:id="@+id/otpProgress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:indeterminate="true"
+                    android:max="30"
+                    android:progress="0"
+                    android:visibility="gone"
+                    android:secondaryProgress="0"
+                    android:theme="@style/ProgressTheme"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </FrameLayout>
+
+
+            <com.sillylife.covidvaccin.views.components.UIComponentOtp
+                android:id="@+id/otpView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:enabled="true"
+                android:focusable="true"
+                android:fontFamily="@font/eudoxus_sans_medium"
+                android:inputType="number"
+                android:itemBackground="@color/white"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_15ssp"
+                app:itemHeight="@dimen/_45sdp"
+                app:itemRadius="@dimen/_12sdp"
+                app:itemWidth="@dimen/_38sdp"
+                app:lineColor="@color/grey_phone_bg_stroke"
+                app:lineWidth="1.6dp"
+                app:viewType="rectangle" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvOtpError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginBottom="@dimen/_22sdp"
+                android:fontFamily="@font/eudoxus_sans_regular"
+                android:text="Wrong OTP! Check and type again."
+                android:textColor="@color/error_text"
+                android:textSize="@dimen/_10ssp" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tcPrivacyTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/_16sdp"
+        android:fontFamily="@font/eudoxus_sans_regular"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="@string/t_c_and_privacy_policy"
+        android:textColor="@color/grey2"
+        android:textSize="@dimen/_10ssp" />
+
+</LinearLayout>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="horizontal"
+    tools:context=".views.activity.LoginActivity">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/leftBtn"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_45sdp"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_16sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:layout_weight="1"
+        android:background="@drawable/ic_btn_grey_bg"
+        android:elevation="0dp"
+        android:fontFamily="@font/eudoxus_sans_medium"
+        android:gravity="center"
+        android:overScrollMode="never"
+        android:text="@string/get_otp"
+        android:textAllCaps="false"
+        android:textColor="@color/grey3"
+        android:textSize="@dimen/_14ssp"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_weight="1">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/rightBtn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:background="@drawable/ic_btn_pink_bg"
+            android:elevation="0dp"
+            android:fontFamily="@font/eudoxus_sans_medium"
+            android:gravity="center"
+            android:overScrollMode="never"
+            android:text="@string/get_otp"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14ssp"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <ProgressBar
+            android:id="@+id/rightBtnProgress"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:elevation="5dp"
+            android:progressTint="@color/white"
+            android:theme="@style/ProgressWhiteTheme"
+            android:visibility="gone"
+            tools:visibility="visible" />
+    </FrameLayout>
+</LinearLayout>

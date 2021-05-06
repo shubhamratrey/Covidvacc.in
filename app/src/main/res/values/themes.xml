@@ -1,0 +1,61 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Theme.Covidvaccin" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryDark">@color/purple_700</item>
+        <item name="colorAccent">@color/teal_200</item>
+        <!-- Customize your theme here. -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="Theme.Covidvaccin.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Covidvaccin.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Theme.Covidvaccin.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/linen</item>
+        <item name="colorPrimaryVariant">@color/coral</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <!-- Customize your theme here. -->
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+
+    <style name="ProgressWhiteTheme" parent="Theme.Covidvaccin.NoActionBar">
+        <item name="colorAccent">@android:color/white</item>
+    </style>
+
+    <style name="ProgressTheme" parent="Theme.Covidvaccin.NoActionBar">
+        <item name="colorAccent">@color/black</item>
+        <item name="strokeWidth">1dp</item>
+    </style>
+
+    <style name="ToolBarText">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="titleTextColor">@color/black</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="DialogButton" parent="@style/Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="android:textColor">#282E34</item>
+        <item name="backgroundTint">#00000000</item>
+        <item name="android:background">#00000000</item>
+    </style>
+
+    <style name="DatePicker" parent="Theme.MaterialComponents.Light.Dialog.Alert">
+        <item name="colorAccent">#282E34</item>
+        <item name="materialButtonStyle">@style/DialogButton</item>
+    </style>
+</resources>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".views.activity.LoginActivity">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_56sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:fontFamily="@font/eudoxus_sans_bold"
+        android:gravity="start"
+        android:maxLines="1"
+        android:text="How this works?"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_24ssp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_44sdp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                app:srcCompat="@drawable/htw_1" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/htwTv1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:fontFamily="@font/eudoxus_sans_regular"
+                android:text="Login as child on your child phone"
+                android:textColor="@color/grey3"
+                android:textSize="@dimen/_14ssp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                app:srcCompat="@drawable/htw_2" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/htwTv2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:fontFamily="@font/eudoxus_sans_regular"
+                android:text="Login as child on your child phone"
+                android:textColor="@color/grey3"
+                android:textSize="@dimen/_14ssp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                app:srcCompat="@drawable/htw_3" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/htwTv3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:fontFamily="@font/eudoxus_sans_regular"
+                android:text="Login as child on your child phone"
+                android:textColor="@color/grey3"
+                android:textSize="@dimen/_14ssp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                app:srcCompat="@drawable/htw_4" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/htwTv4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:fontFamily="@font/eudoxus_sans_regular"
+                android:text="Login as child on your child phone"
+                android:textColor="@color/grey3"
+                android:textSize="@dimen/_14ssp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                app:srcCompat="@drawable/htw_5" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/htwTv5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:fontFamily="@font/eudoxus_sans_regular"
+                android:text="Login as child on your child phone"
+                android:textColor="@color/grey3"
+                android:textSize="@dimen/_14ssp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <include layout="@layout/bottom_btn_layout" />
+
+</LinearLayout>

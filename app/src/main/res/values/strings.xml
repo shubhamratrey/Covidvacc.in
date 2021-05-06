@@ -1,0 +1,57 @@
+<resources>
+    <string name="app_name">Covidvacc.in</string>
+    <plurals name="day_count_string">
+        <item quantity="one">%dd</item>
+        <item quantity="other">%dd</item>
+    </plurals>
+    <plurals name="hour_count_string">
+        <item quantity="one">%dh</item>
+        <item quantity="other">%dh</item>
+    </plurals>
+    <plurals name="min_count_string">
+        <item quantity="one">%dm</item>
+        <item quantity="other">%dm</item>
+    </plurals>
+    <plurals name="second_count_string">
+        <item quantity="one">%ds</item>
+        <item quantity="other">%ds</item>
+    </plurals>
+
+    <string name="just_now">Just now</string>
+    <string name="yesterday">Yesterday</string>
+    <string name="today">Today</string>
+    <string name="sec">sec</string>
+    <string name="min">min</string>
+    <string name="hour">hr</string>
+
+    <string name="explanation_access_to_appusage_is_not_enabled">Failed to retrieve app usage
+        statistics. You may need to enable access
+        for this app through Settings > Security > Apps with usage access
+    </string>
+
+    <string name="t_c_and_privacy_policy"><![CDATA[By continuing you will accept our <font color=\'#FF005C\'><a style="text-decoration:none" href="https://zoopzam.com/terms-condition">T&C</a></font> and <font color=\'#FF005C\'><a style="text-decoration:none" href="https://zoopzam.com/privacy-policy">P&P</a></font>.]]></string>
+    <string name="enter_the_code_we_just_texted_you">Enter the code we\njust texted you</string>
+    <string name="get_otp">Get OTP</string>
+    <string name="submit_otp">Submit OTP</string>
+
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="phone_number">PHONE NUMBER</string>
+    <string name="who_use_this_device">Who use this device?</string>
+    <string name="in_parent_mode_you_can_monitor_yourself_and_child_as_well">In parent mode you can monitor yourself and child as well.</string>
+    <string name="login_as_child">Login as Child</string>
+    <string name="login_as_parent_yourself">Login as Parent/Yourself</string>
+    <string name="welcome">Welcome!</string>
+    <string name="you_can_find_your_unique_parent_code_later_on_profile">You can find your unique parent code later on profile</string>
+    <string name="dashboard"><![CDATA[Dashboard >]]></string>
+    <string name="back">Back</string>
+    <string name="child">Child</string>
+    <string name="profile">Profile</string>
+    <string name="home">Home</string>
+</resources>

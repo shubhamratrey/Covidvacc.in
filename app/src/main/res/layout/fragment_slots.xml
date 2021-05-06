@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context=".views.activity.MainActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:elevation="0dp"
+        app:elevation="0dp">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsingToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:layout_scrollFlags="snap"
+            app:titleEnabled="false">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:gravity="center"
+                app:contentInsetStartWithNavigation="0dp"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:navigationIcon="@drawable/ic_left_arrow">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="56dp"
+                    android:fontFamily="@font/eudoxus_sans_bold"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="@string/app_name"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_24ssp" />
+
+            </androidx.appcompat.widget.Toolbar>
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/searchView"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="@dimen/_13sdp"
+                android:layout_marginTop="@dimen/_60sdp"
+                android:layout_marginEnd="@dimen/_13sdp"
+                android:background="@drawable/ic_search_bg"
+                android:focusedByDefault="false"
+                android:gravity="center"
+                android:paddingStart="-8dp"
+                android:paddingEnd="-8dp"
+                android:queryBackground="@android:color/transparent"
+                android:searchIcon="@drawable/ic_search"
+                app:defaultQueryHint=""
+                app:iconifiedByDefault="false"
+                app:queryBackground="@android:color/transparent"
+                app:searchIcon="@drawable/ic_search"
+                tools:targetApi="o" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/filtersRcv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_95sdp"
+                android:clipToPadding="false"
+                android:orientation="horizontal"
+                android:overScrollMode="never"
+                android:paddingLeft="16dp"
+                android:paddingTop="15dp"
+                android:paddingRight="16dp"
+                android:paddingBottom="15dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                tools:listitem="@layout/item_filter"
+                tools:visibility="visible" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvAll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:paddingTop="5dp"
+        android:paddingBottom="30dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:listitem="@layout/item_slot" />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_60sdp"
+        android:theme="@style/ProgressTheme"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/notifyLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/_13sdp"
+        android:layout_marginTop="@dimen/_60sdp"
+        android:layout_marginEnd="@dimen/_13sdp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/eudoxus_sans_bold"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="Notify me when vaccine is available"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_16ssp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/leftBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/ic_btn_grey_bg"
+            android:elevation="0dp"
+            android:fontFamily="@font/eudoxus_sans_medium"
+            android:gravity="center"
+            android:overScrollMode="never"
+            android:paddingStart="@dimen/_15sdp"
+            android:paddingEnd="@dimen/_15sdp"
+            android:text="Notify me"
+            android:textAllCaps="false"
+            android:textColor="@color/grey3"
+            android:textSize="@dimen/_14ssp"
+            tools:visibility="visible" />
+
+    </LinearLayout>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
