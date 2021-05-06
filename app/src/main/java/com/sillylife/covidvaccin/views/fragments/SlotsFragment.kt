@@ -319,7 +319,6 @@ class SlotsFragment : BaseFragment(), SlotsModule.APIModuleListener {
     }
 
     override fun onSlotsApiSuccess(response: SlotsResponse?) {
-        Log.d(TAG, response.toString())
         if (isAdded) {
             when {
                 response?.slots != null && response.slots?.size!! > 0 -> {

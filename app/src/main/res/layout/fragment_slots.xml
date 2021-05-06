@@ -148,14 +148,14 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:layout_marginStart="@dimen/_14sdp"
-                    android:layout_marginEnd="@dimen/_14sdp"
-                    android:fontFamily="@font/eudoxus_sans_light"
                     android:layout_marginTop="@dimen/_6sdp"
+                    android:layout_marginEnd="@dimen/_14sdp"
                     android:layout_marginBottom="@dimen/_4sdp"
+                    android:alpha="0.7"
+                    android:fontFamily="@font/eudoxus_sans_light"
                     android:gravity="start"
                     android:text="Disclaimer : If you see availability, please book on CoWin instantly before the slots are lost."
                     android:textColor="@color/river_bed"
-                    android:alpha="0.7"
                     android:textSize="@dimen/_10ssp" />
 
             </LinearLayout>
