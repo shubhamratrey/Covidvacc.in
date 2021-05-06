@@ -1,5 +1,6 @@
 package com.sillylife.covidvaccin.views.viewmodal
 
+import com.sillylife.covidvaccin.models.responses.GenericResponse
 import com.sillylife.covidvaccin.models.responses.SlotsResponse
 import com.sillylife.covidvaccin.views.fragments.BaseFragment
 import com.sillylife.covidvaccin.views.module.BaseModule
@@ -13,6 +14,10 @@ class SlotsViewModel(fragment: BaseFragment) : BaseViewModel(),
 
     override fun onSlotsApiSuccess(response: SlotsResponse?) {
         listener.onSlotsApiSuccess(response)
+    }
+
+    override fun onAddReminderApiSuccess(response: GenericResponse?) {
+        listener.onAddReminderApiSuccess(response)
     }
 
     override fun onApiFailure(statusCode: Int, message: String) {
@@ -31,5 +36,8 @@ class SlotsViewModel(fragment: BaseFragment) : BaseViewModel(),
         module.getSessions(districtId, date)
     }
 
+    fun addReminder(centerId: Int?, districtId: Int?, date: String?) {
+        module.addReminder(centerId, districtId, date)
+    }
 
 }

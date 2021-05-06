@@ -10,10 +10,11 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class District(
-        @SerializedName("district_id") var districtId: Int? = null,
-        @SerializedName("district_name") var districtName: String? = null,
-        @SerializedName("district_slug") var districtSlug: String? = null,
-        @SerializedName("state_slug") var stateSlug: String? = null,
+        @SerializedName("id") var id: Int? = null,
+        @SerializedName("name") var name: String? = null,
+        @SerializedName("slug") var slug: String? = null,
+        @SerializedName("image") var image: String? = null,
+        @SerializedName("cowin_district_id") var cowinDistrictId: Int? = null
 ) : Parcelable {
 
 }

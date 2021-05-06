@@ -10,9 +10,11 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class State(
-        @SerializedName("state_id") var stateId: Int? = null,
-        @SerializedName("state_name") var stateName: String? = null,
-        @SerializedName("state_slug") var stateSlug: String? = null,
+        @SerializedName("id") var id: Int? = null,
+        @SerializedName("name") var name: String? = null,
+        @SerializedName("slug") var slug: String? = null,
+        @SerializedName("image") var image: String? = null,
+        @SerializedName("cowin_state_id") var cowinStateId: Int? = null
 ) : Parcelable {
 
 }

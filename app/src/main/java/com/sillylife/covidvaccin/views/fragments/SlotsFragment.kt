@@ -18,6 +18,7 @@ import com.sillylife.covidvaccin.R
 import com.sillylife.covidvaccin.constants.BundleConstants
 import com.sillylife.covidvaccin.models.Slot
 import com.sillylife.covidvaccin.models.SlotFilter
+import com.sillylife.covidvaccin.models.responses.GenericResponse
 import com.sillylife.covidvaccin.models.responses.SlotsResponse
 import com.sillylife.covidvaccin.utils.CommonUtil
 import com.sillylife.covidvaccin.views.activity.WebViewActivity
@@ -52,6 +53,7 @@ class SlotsFragment : BaseFragment(), SlotsModule.APIModuleListener {
     private var mStartDate: String = ""
     private var mDistrictSlug: String = ""
     private var mDistrictTitle: String = ""
+    private var mDistrictId: Int = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -114,6 +116,11 @@ class SlotsFragment : BaseFragment(), SlotsModule.APIModuleListener {
                 progress?.visibility = View.VISIBLE
                 notifyLayout?.visibility = View.GONE
                 setDateTv()
+            }
+        }
+        reminderFabButton?.setOnClickListener {
+            if (CommonUtil.textIsNotEmpty(mDate) && mDistrictId != -1) {
+                viewModel?.addReminder(0, mDistrictId, mDate)
             }
         }
     }
@@ -327,9 +334,18 @@ class SlotsFragment : BaseFragment(), SlotsModule.APIModuleListener {
                     rcvAll?.visibility = View.GONE
                 }
             }
+            if (response?.district != null) {
+                mDistrictId = response.district?.id!!
+            }
             if (response?.filters != null) {
                 setFilterRecyclerView(response.filters!!)
             }
+        }
+    }
+
+    override fun onAddReminderApiSuccess(response: GenericResponse?) {
+        if (isAdded && CommonUtil.textIsNotEmpty(response?.message)) {
+            showToast(response?.message!!, Toast.LENGTH_SHORT)
         }
     }
 

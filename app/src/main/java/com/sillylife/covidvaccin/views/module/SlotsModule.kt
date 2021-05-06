@@ -1,6 +1,7 @@
 package com.sillylife.covidvaccin.views.module
 
 import com.sillylife.covidvaccin.constants.NetworkConstants
+import com.sillylife.covidvaccin.models.responses.GenericResponse
 import com.sillylife.covidvaccin.models.responses.SlotsResponse
 import com.sillylife.covidvaccin.services.CallbackWrapper
 import com.sillylife.covidvaccin.utils.CommonUtil
@@ -27,7 +28,7 @@ class SlotsModule(val listener: APIModuleListener) : BaseModule() {
                         if (t.isSuccessful) {
                             listener.onSlotsApiSuccess(t.body()!!)
                         } else {
-                            listener.onApiFailure(t.code(), "empty body")
+                            listener.onApiFailure(t.code(), t.message())
                         }
                     }
 
@@ -49,7 +50,7 @@ class SlotsModule(val listener: APIModuleListener) : BaseModule() {
                         if (t.isSuccessful) {
                             listener.onSlotsApiSuccess(t.body()!!)
                         } else {
-                            listener.onApiFailure(t.code(), "empty body")
+                            listener.onApiFailure(t.code(), t.message())
                         }
                     }
 
@@ -59,8 +60,30 @@ class SlotsModule(val listener: APIModuleListener) : BaseModule() {
                 }))
     }
 
+    fun addReminder(centerId: Int?, districtId: Int?, date: String?) {
+        appDisposable.add(apiService
+                .addReminder(centerId, districtId, date)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : CallbackWrapper<Response<GenericResponse>>() {
+                    override fun onSuccess(t: Response<GenericResponse>) {
+                        if (t.body() != null) {
+                            listener.onAddReminderApiSuccess(t.body()!!)
+                        } else {
+                            listener.onApiFailure(t.code(), t.message())
+                        }
+                    }
+
+                    override fun onFailure(code: Int, message: String) {
+                        listener.onApiFailure(code, message)
+                    }
+                })
+        )
+    }
+
     interface APIModuleListener {
         fun onSlotsApiSuccess(response: SlotsResponse?)
+        fun onAddReminderApiSuccess(response: GenericResponse?)
         fun onApiFailure(statusCode: Int, message: String)
     }
 }

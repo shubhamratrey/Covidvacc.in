@@ -47,4 +47,12 @@ interface IAPIService {
             @Field("district_id") districtId: Int?,
     ): Observable<Response<UserResponse>>
 
+    @FormUrlEncoded
+    @POST("${NetworkConstants.V1}/covid19/reminder/")
+    fun addReminder(
+            @Field("center_id") centerId: Int?,
+            @Field("district_id") districtId: Int?,
+            @Field("date") date: String?,
+    ): Observable<Response<GenericResponse>>
+
 }
