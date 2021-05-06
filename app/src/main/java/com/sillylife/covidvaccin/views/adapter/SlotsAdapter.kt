@@ -96,7 +96,6 @@ class SlotsAdapter(val context: Context,
                 for (item in items) {
                     if (item.address?.contains(constraint!!, ignoreCase = true)!!
                             || (item.center_name?.contains(constraint!!, ignoreCase = true)!!)
-                            || (item.state_name?.contains(constraint!!, ignoreCase = true)!!)
                             || (item.pincode?.contains(constraint!!, ignoreCase = true)!!)
                     ) {
                         filterList.add(item)

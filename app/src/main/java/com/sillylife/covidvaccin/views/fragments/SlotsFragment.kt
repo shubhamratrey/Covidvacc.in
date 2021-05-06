@@ -197,9 +197,10 @@ class SlotsFragment : BaseFragment(), SlotsModule.APIModuleListener {
         })
 //        searchView.onActionViewExpanded()
         val textview: TextView = searchView.findViewById(androidx.appcompat.R.id.search_src_text)
-        val typeface = ResourcesCompat.getFont(activity!!, R.font.eudoxus_sans_light)
+        val typeface = ResourcesCompat.getFont(activity!!, R.font.eudoxus_sans_regular)
         textview.typeface = typeface
         textview.textSize = 16F
+        textview.setTextColor(Color.BLACK)
 
         val searchClose: ImageView = searchView.findViewById(androidx.appcompat.R.id.search_close_btn)
         searchClose.setColorFilter(Color.parseColor("#BAB5C6"))
@@ -253,7 +254,7 @@ class SlotsFragment : BaseFragment(), SlotsModule.APIModuleListener {
                 DatePickerFragment.DatePickerFragmentListener {
             override fun onDateSet(calendar: Calendar, meta: Any?) {
                 try {
-                    val sdf =  getSimpleDateFormat()
+                    val sdf = getSimpleDateFormat()
                     mDate = sdf?.format(calendar.time).toString()
                     adapter = null
                     viewModel?.getSlots(mDistrictSlug, filterAdapter?.getSelectedFilters()!!, mDate)
