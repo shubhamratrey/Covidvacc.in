@@ -1,5 +1,6 @@
 package com.sillylife.covidvaccin.views.fragments
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -14,10 +15,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sillylife.covidvaccin.R
+import com.sillylife.covidvaccin.constants.BundleConstants
 import com.sillylife.covidvaccin.models.Slot
 import com.sillylife.covidvaccin.models.SlotFilter
 import com.sillylife.covidvaccin.models.responses.SlotsResponse
 import com.sillylife.covidvaccin.utils.CommonUtil
+import com.sillylife.covidvaccin.views.activity.WebViewActivity
 import com.sillylife.covidvaccin.views.adapter.FilterAdapter
 import com.sillylife.covidvaccin.views.adapter.SlotsAdapter
 import com.sillylife.covidvaccin.views.components.DatePickerFragment
@@ -33,14 +36,30 @@ class SlotsFragment : BaseFragment(), SlotsModule.APIModuleListener {
 
     companion object {
         val TAG = SlotsFragment::class.java.simpleName
-        fun newInstance() = SlotsFragment()
+        fun newInstance(districtSlug: String, districtTitle: String) =
+                SlotsFragment().apply {
+                    arguments = Bundle().apply {
+                        putString("mDistrictSlug", districtSlug)
+                        putString("mDistrictTitle", districtTitle)
+                    }
+                }
     }
 
     private var adapter: SlotsAdapter? = null
     private var filterAdapter: FilterAdapter? = null
     private var viewModel: SlotsViewModel? = null
     private var mDate: String = ""
-    private var mDistrict: String = "korba"
+    private var mStartDate: String = ""
+    private var mDistrictSlug: String = ""
+    private var mDistrictTitle: String = ""
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            mDistrictSlug = it.getString("mDistrictSlug", "")
+            mDistrictTitle = it.getString("mDistrictTitle", "")
+        }
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_slots, container, false)
@@ -51,20 +70,52 @@ class SlotsFragment : BaseFragment(), SlotsModule.APIModuleListener {
         viewModel = ViewModelProvider(this, FragmentViewModelFactory(this@SlotsFragment))
                 .get(SlotsViewModel::class.java)
         try {
-            val sdf = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
-            mDate = sdf.format(Date())
+            val sdf = getSimpleDateFormat()
+            mDate = sdf?.format(Date())!!
+            mStartDate = mDate
+            setDateTv()
         } catch (e: Exception) {
             e.printStackTrace()
         }
 
-        viewModel?.getSlots(mDistrict, listOf(), mDate)
+        viewModel?.getSlots(mDistrictSlug, listOf(), mDate)
         progress?.visibility = View.VISIBLE
         notifyLayout?.visibility = View.GONE
+        searchView?.visibility = View.GONE
 
         toolbar?.setNavigationOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()
         }
-//        viewModel?.getSessions(125, "05-05-2021")
+
+        calenderIv?.setOnClickListener {
+            showDatePicker()
+        }
+
+        if (CommonUtil.textIsNotEmpty(mDistrictTitle)) {
+            toolbarTv?.text = mDistrictTitle
+        }
+        rightDateIv?.setOnClickListener {
+            val innerDate = getDateString(1)
+            if (mDate != innerDate) {
+                mDate = innerDate
+                adapter = null
+                viewModel?.getSlots(mDistrictSlug, filterAdapter?.getSelectedFilters()!!, mDate)
+                progress?.visibility = View.VISIBLE
+                notifyLayout?.visibility = View.GONE
+                setDateTv()
+            }
+        }
+        leftDateIv?.setOnClickListener {
+            val innerDate = getDateString(-1)
+            if (mStartDate != mDate) {
+                mDate = innerDate
+                adapter = null
+                viewModel?.getSlots(mDistrictSlug, filterAdapter?.getSelectedFilters()!!, mDate)
+                progress?.visibility = View.VISIBLE
+                notifyLayout?.visibility = View.GONE
+                setDateTv()
+            }
+        }
     }
 
     private fun setAdapter(slots: ArrayList<Slot>) {
@@ -74,7 +125,9 @@ class SlotsFragment : BaseFragment(), SlotsModule.APIModuleListener {
         adapter = SlotsAdapter(context = requireContext(), items = slots,
                 object : SlotsAdapter.Listeners {
                     override fun onSlotClicked(slot: Slot, position: Int, view: View?) {
-
+                        if (isAdded && CommonUtil.textIsNotEmpty(slot.covinWebUrl)) {
+                            startActivity(Intent(requireContext(), WebViewActivity::class.java).putExtra(BundleConstants.WEB_URL, slot.covinWebUrl))
+                        }
                     }
 
                     override fun onSendRemindedClicked(slot: Slot, position: Int, view: View?) {
@@ -117,6 +170,7 @@ class SlotsFragment : BaseFragment(), SlotsModule.APIModuleListener {
     private fun setupSearchView() {
         searchView.clearFocus()
         searchView.isFocusable = false
+        searchView?.visibility = View.VISIBLE
         CommonUtil.hideKeyboard(requireContext())
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             searchView.isFocusedByDefault = false
@@ -182,7 +236,7 @@ class SlotsFragment : BaseFragment(), SlotsModule.APIModuleListener {
             if (s == "ValidFilters" && any is SlotFilter) {
                 Log.d(filterAdapter?.TAG, "size ${filterAdapter?.getSelectedFilters()}")
                 adapter = null
-                viewModel?.getSlots(mDistrict, filterAdapter?.getSelectedFilters()!!, mDate)
+                viewModel?.getSlots(mDistrictSlug, filterAdapter?.getSelectedFilters()!!, mDate)
                 progress?.visibility = View.VISIBLE
                 notifyLayout?.visibility = View.GONE
             } else if (s == "DateFilter" && any is SlotFilter) {
@@ -192,6 +246,68 @@ class SlotsFragment : BaseFragment(), SlotsModule.APIModuleListener {
         filtersRcv?.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
         filtersRcv?.adapter = filterAdapter
         filtersRcv?.visibility = View.VISIBLE
+    }
+
+    private fun showDatePicker() {
+        val dialog = DatePickerFragment.newInstance(object :
+                DatePickerFragment.DatePickerFragmentListener {
+            override fun onDateSet(calendar: Calendar, meta: Any?) {
+                try {
+                    val sdf =  getSimpleDateFormat()
+                    mDate = sdf?.format(calendar.time).toString()
+                    adapter = null
+                    viewModel?.getSlots(mDistrictSlug, filterAdapter?.getSelectedFilters()!!, mDate)
+                    progress?.visibility = View.VISIBLE
+                    notifyLayout?.visibility = View.GONE
+                    setDateTv()
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
+
+            override fun onDismiss() {
+
+            }
+        }, mDate)
+        activity?.let {
+            if (it.isFinishing.not()) {
+                dialog.show(childFragmentManager, "DatePickerFragment")
+            }
+        }
+    }
+
+    fun getDateString(int: Int): String {
+        var innerDate = ""
+        val calendar = Calendar.getInstance()
+        try {
+            val sdf = getSimpleDateFormat()
+            calendar.time = sdf?.parse(mDate)!!
+            calendar.add(Calendar.DAY_OF_YEAR, int)
+            innerDate = sdf.format(calendar.time)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return innerDate
+    }
+
+    fun setDateTv() {
+        if (CommonUtil.textIsNotEmpty(mDate)) {
+            try {
+                val sdf = getSimpleDateFormat()
+                dateTv.text = SimpleDateFormat("MMM dd, EEEE", Locale.getDefault()).format(sdf?.parse(mDate)!!)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    fun getSimpleDateFormat(): SimpleDateFormat? {
+        return try {
+            SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
     }
 
     override fun onSlotsApiSuccess(response: SlotsResponse?) {
@@ -210,40 +326,8 @@ class SlotsFragment : BaseFragment(), SlotsModule.APIModuleListener {
                     rcvAll?.visibility = View.GONE
                 }
             }
-            response?.filters?.add(0, SlotFilter(type = "date", text = mDate, is_selected = true))
             if (response?.filters != null) {
                 setFilterRecyclerView(response.filters!!)
-            }
-        }
-    }
-
-    fun showDatePicker() {
-        val dialog = DatePickerFragment.newInstance(object :
-                DatePickerFragment.DatePickerFragmentListener {
-            override fun onDateSet(calendar: Calendar, meta: Any?) {
-                try {
-                    val FORMAT = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
-                    mDate = FORMAT.format(calendar.time).toString()
-                    adapter = null
-                    viewModel?.getSlots(mDistrict, filterAdapter?.getSelectedFilters()!!, mDate)
-                    progress?.visibility = View.VISIBLE
-                    notifyLayout?.visibility = View.GONE
-
-                    if (filterAdapter != null) {
-                        filterAdapter?.notifyDateChange(SlotFilter(type = "date", text = mDate, is_selected = true))
-                    }
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
-            }
-
-            override fun onDismiss() {
-
-            }
-        }, mDate)
-        activity?.let {
-            if (it.isFinishing.not()) {
-                dialog.show(childFragmentManager, "DatePickerFragment")
             }
         }
     }

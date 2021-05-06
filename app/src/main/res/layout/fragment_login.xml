@@ -123,7 +123,7 @@
                 android:layout_height="@dimen/_50sdp"
                 android:layout_marginStart="@dimen/_20sdp"
                 android:layout_marginEnd="@dimen/_20sdp"
-                android:background="@drawable/ic_btn_pink_bg"
+                android:background="@drawable/ic_btn_purple_bg"
                 android:elevation="0dp"
                 android:visibility="gone"
                 android:fontFamily="@font/notosans_medium"
@@ -146,7 +146,7 @@
                 android:elevation="5dp"
                 android:progressTint="@color/white"
                 android:theme="@style/ProgressWhiteTheme"
-                android:visibility="visible" />
+                android:visibility="gone" />
         </FrameLayout>
 
 

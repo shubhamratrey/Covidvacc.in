@@ -25,6 +25,7 @@
     <color name="grey4">#262626</color>
     <color name="btn_grey">#F5F5F5</color>
     <color name="btn_pinkred">#FF005C</color>
+    <color name="btn_purple">#FF3700B3</color>
     <color name="grey_phone_bg_stroke">#F0F0F0</color>
     <color name="error_text">#F5222D</color>
     <color name="blue_text">#1890FF</color>

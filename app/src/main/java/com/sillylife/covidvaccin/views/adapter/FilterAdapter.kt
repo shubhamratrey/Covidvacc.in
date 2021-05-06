@@ -33,12 +33,14 @@ class FilterAdapter(val context: Context, val list: ArrayList<SlotFilter>, val l
             if (item.type != "date") {
                 if (holder.filterTv.isSelected) {
                     holder.filterTv.isSelected = false
-                    holder.filterTv.setTextColor(ContextCompat.getColor(context, R.color.river_bed))
+                    holder.filterTv.setTextColor(ContextCompat.getColor(context, R.color.river_bed_40))
+                    holder.filterTv.setBackgroundResource(R.drawable.ic_capsule_filter_unselected)
                     selectedFilters.remove(item.value!!)
                     notifyItemChanged(holder.absoluteAdapterPosition)
                 } else {
                     holder.filterTv.isSelected = true
                     holder.filterTv.setTextColor(ContextCompat.getColor(context, R.color.chambray))
+                    holder.filterTv.setBackgroundResource(R.drawable.ic_capsule_filter_selected)
                     selectedFilters.add(item.value!!)
                     notifyItemChanged(holder.absoluteAdapterPosition)
                 }
@@ -47,15 +49,16 @@ class FilterAdapter(val context: Context, val list: ArrayList<SlotFilter>, val l
                 listener(item, holder.absoluteAdapterPosition, "DateFilter")
             }
 
-
         }
 
         if (selectedFilters.contains(item.value)) {
             holder.filterTv.isSelected = true
             holder.filterTv.setTextColor(ContextCompat.getColor(context, R.color.chambray))
+            holder.filterTv.setBackgroundResource(R.drawable.ic_capsule_filter_selected)
         } else {
             holder.filterTv.isSelected = false
-            holder.filterTv.setTextColor(ContextCompat.getColor(context, R.color.river_bed))
+            holder.filterTv.setTextColor(ContextCompat.getColor(context, R.color.river_bed_40))
+            holder.filterTv.setBackgroundResource(R.drawable.ic_capsule_filter_unselected)
         }
 
         if (item.is_selected != null && item.is_selected!!) {
@@ -64,6 +67,7 @@ class FilterAdapter(val context: Context, val list: ArrayList<SlotFilter>, val l
                 selectedFilters.add(item.value!!)
             }
             holder.filterTv.setTextColor(ContextCompat.getColor(context, R.color.chambray))
+            holder.filterTv.setBackgroundResource(R.drawable.ic_capsule_filter_selected)
         }
     }
 

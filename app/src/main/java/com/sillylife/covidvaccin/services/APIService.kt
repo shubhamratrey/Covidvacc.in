@@ -3,7 +3,6 @@ package com.sillylife.covidvaccin.services
 import android.content.Context
 import androidx.multidex.BuildConfig
 import com.sillylife.covidvaccin.managers.FirebaseAuthUserManager
-import com.sillylife.covidvaccin.services.IAPIService
 import okhttp3.Cache
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient

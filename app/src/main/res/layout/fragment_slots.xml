@@ -29,62 +29,136 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_7sdp"
                 android:gravity="center"
                 app:contentInsetStartWithNavigation="0dp"
                 app:layout_scrollFlags="scroll|enterAlways"
-                app:navigationIcon="@drawable/ic_left_arrow">
+                app:navigationIcon="@drawable/ic_baseline_arrow_back_24">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/toolbarTv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="@dimen/_50sdp"
+                        android:fontFamily="@font/eudoxus_sans_regular"
+                        android:maxLines="1"
+                        android:text="@string/app_name"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_16ssp" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/calenderIv"
+                        android:layout_width="@dimen/_48sdp"
+                        android:layout_height="@dimen/_48sdp"
+                        android:layout_gravity="center_vertical|end"
+                        android:padding="@dimen/_16sdp"
+                        app:srcCompat="@drawable/ic_baseline_calendar_today_24" />
+
+                </FrameLayout>
+
+            </androidx.appcompat.widget.Toolbar>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_42sdp"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_2sdp"
+                    android:layout_marginEnd="@dimen/_3sdp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/leftDateIv"
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:layout_gravity="center_vertical"
+                        android:alpha="0.7"
+                        android:padding="@dimen/_10sdp"
+                        app:srcCompat="@drawable/ic_left_arrow" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/dateTv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/_50sdp"
+                        android:layout_marginEnd="@dimen/_50sdp"
+                        android:fontFamily="@font/eudoxus_sans_bold"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_16ssp" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/rightDateIv"
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:layout_gravity="end|center_vertical"
+                        android:alpha="0.7"
+                        android:padding="@dimen/_10sdp"
+                        android:rotation="180"
+                        app:srcCompat="@drawable/ic_left_arrow" />
+
+                </FrameLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/filtersRcv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:overScrollMode="never"
+                    android:paddingStart="16dp"
+                    android:paddingTop="15dp"
+                    android:paddingEnd="0dp"
+                    android:paddingBottom="15dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    tools:listitem="@layout/item_filter"
+                    tools:visibility="visible" />
+
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/searchView"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="@dimen/_13sdp"
+                    android:layout_marginEnd="@dimen/_13sdp"
+                    android:background="@drawable/ic_search_bg"
+                    android:focusedByDefault="false"
+                    android:gravity="center"
+                    android:paddingStart="-8dp"
+                    android:paddingEnd="-8dp"
+                    android:queryBackground="@android:color/transparent"
+                    android:searchIcon="@drawable/ic_search"
+                    app:defaultQueryHint=""
+                    app:iconifiedByDefault="false"
+                    app:queryBackground="@android:color/transparent"
+                    app:searchIcon="@drawable/ic_search"
+                    tools:targetApi="o" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="56dp"
-                    android:fontFamily="@font/eudoxus_sans_bold"
-                    android:gravity="center"
-                    android:maxLines="1"
-                    android:text="@string/app_name"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_24ssp" />
+                    android:layout_gravity="start"
+                    android:layout_marginStart="@dimen/_14sdp"
+                    android:layout_marginEnd="@dimen/_14sdp"
+                    android:fontFamily="@font/eudoxus_sans_light"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:layout_marginBottom="@dimen/_4sdp"
+                    android:gravity="start"
+                    android:text="Disclaimer : If you see availability, please book on CoWin instantly before the slots are lost."
+                    android:textColor="@color/river_bed"
+                    android:alpha="0.7"
+                    android:textSize="@dimen/_10ssp" />
 
-            </androidx.appcompat.widget.Toolbar>
-
-            <androidx.appcompat.widget.SearchView
-                android:id="@+id/searchView"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginStart="@dimen/_13sdp"
-                android:layout_marginTop="@dimen/_60sdp"
-                android:layout_marginEnd="@dimen/_13sdp"
-                android:background="@drawable/ic_search_bg"
-                android:focusedByDefault="false"
-                android:gravity="center"
-                android:paddingStart="-8dp"
-                android:paddingEnd="-8dp"
-                android:queryBackground="@android:color/transparent"
-                android:searchIcon="@drawable/ic_search"
-                app:defaultQueryHint=""
-                app:iconifiedByDefault="false"
-                app:queryBackground="@android:color/transparent"
-                app:searchIcon="@drawable/ic_search"
-                tools:targetApi="o" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/filtersRcv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_95sdp"
-                android:clipToPadding="false"
-                android:orientation="horizontal"
-                android:overScrollMode="never"
-                android:paddingLeft="16dp"
-                android:paddingTop="15dp"
-                android:paddingRight="16dp"
-                android:paddingBottom="15dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                tools:listitem="@layout/item_filter"
-                tools:visibility="visible" />
+            </LinearLayout>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -97,8 +171,7 @@
         android:background="@color/white"
         android:clipToPadding="false"
         android:overScrollMode="never"
-        android:paddingTop="5dp"
-        android:paddingBottom="30dp"
+        android:paddingBottom="@dimen/_30sdp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:listitem="@layout/item_slot" />
 
@@ -154,5 +227,15 @@
 
     </LinearLayout>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/_10sdp"
+        android:src="@drawable/ic_baseline_notifications_24"
+        android:tint="@color/white"
+        app:backgroundTint="@color/apple_green"
+        app:fabSize="auto"
+        app:tint="@android:color/white" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

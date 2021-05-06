@@ -36,7 +36,7 @@ class HomeFragment : BaseFragment(), HomeFragmentModule.APIModuleListener {
                 .get(HomeFragmentViewModel::class.java)
         viewModel?.getLocation("", "")
         slotBtn?.setOnClickListener {
-            addFragment(SlotsFragment.newInstance(), SlotsFragment.TAG)
+            addFragment(SlotsFragment.newInstance("korba", "Korba"), SlotsFragment.TAG)
         }
     }
 

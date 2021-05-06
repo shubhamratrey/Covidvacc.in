@@ -39,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_45sdp"
             android:layout_marginBottom="@dimen/_20sdp"
-            android:background="@drawable/ic_btn_pink_bg"
+            android:background="@drawable/ic_btn_purple_bg"
             android:elevation="0dp"
             android:fontFamily="@font/eudoxus_sans_medium"
             android:gravity="center"

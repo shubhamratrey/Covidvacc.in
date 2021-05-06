@@ -20,6 +20,7 @@ data class Slot(
         @SerializedName("min_age_limit") var min_age_limit: Int? = null,
         @SerializedName("fee_type") var fee_type: String? = null,
         @SerializedName("available_capacity") var available_capacity: String? = null,
+        @SerializedName("covin_web_url") var covinWebUrl: String? = null,
 ) : Parcelable {
 
 }

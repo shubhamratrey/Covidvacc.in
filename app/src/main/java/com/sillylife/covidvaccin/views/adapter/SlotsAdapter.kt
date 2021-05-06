@@ -59,8 +59,10 @@ class SlotsAdapter(val context: Context,
             SLOT_ITEEM -> {
                 val slot = commonItemList[holder.absoluteAdapterPosition] as Slot
                 holder.tvPrimary.text = slot.center_name
-                holder.tvSecondary.text = "\uD83D\uDC64 ${slot.min_age_limit} | ${slot.vaccine} | ${slot.address}"
-                holder.tvAvailable.text = slot.available_capacity
+                holder.tvSecondary.text = "\uD83D\uDCCD ${slot.address}, ${slot.district_name} | ${slot.pincode}"
+                holder.tvThird.text = "${slot.min_age_limit}+"
+                holder.tvForth.text = "Vaccine: ${slot.vaccine} (${slot.fee_type})"
+                holder.tvSlots.text = "${slot.available_capacity}\nSlots"
                 //Analytics stuff
                 holder.containerView.setOnClickListener {
                     listener.onSlotClicked(slot, position, it)
@@ -78,8 +80,10 @@ class SlotsAdapter(val context: Context,
 
     inner class ValueFilter : Filter() {
         override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-            commonItemList = results!!.values as ArrayList<Any>
-            notifyDataSetChanged()
+            if (results!!.values != null) {
+                commonItemList = results.values as ArrayList<Any>
+                notifyDataSetChanged()
+            }
         }
 
         override fun performFiltering(constraint: CharSequence?): FilterResults {

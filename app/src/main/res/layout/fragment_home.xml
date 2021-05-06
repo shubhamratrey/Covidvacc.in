@@ -94,7 +94,7 @@
                 android:id="@+id/slotBtn"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_50sdp"
-                android:background="@drawable/ic_btn_pink_bg"
+                android:background="@drawable/ic_btn_purple_bg"
                 android:elevation="0dp"
                 android:fontFamily="@font/notosans_medium"
                 android:overScrollMode="never"
@@ -117,7 +117,7 @@
                 android:elevation="5dp"
                 android:progressTint="@color/white"
                 android:theme="@style/ProgressWhiteTheme"
-                android:visibility="visible" />
+                android:visibility="gone" />
         </FrameLayout>
 
     </LinearLayout>
