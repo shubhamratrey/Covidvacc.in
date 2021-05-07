@@ -171,6 +171,7 @@
         android:background="@color/white"
         android:clipToPadding="false"
         android:overScrollMode="never"
+        android:paddingTop="@dimen/_4sdp"
         android:paddingBottom="@dimen/_30sdp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:listitem="@layout/item_slot" />

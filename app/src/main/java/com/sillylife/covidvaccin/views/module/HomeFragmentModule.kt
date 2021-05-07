@@ -3,20 +3,19 @@ package com.sillylife.covidvaccin.views.module
 import com.sillylife.covidvaccin.constants.NetworkConstants
 import com.sillylife.covidvaccin.models.responses.LocationResponse
 import com.sillylife.covidvaccin.services.CallbackWrapper
-import com.sillylife.covidvaccin.utils.CommonUtil
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import retrofit2.Response
 
 class HomeFragmentModule(val listener: APIModuleListener) : BaseModule() {
 
-    fun getLocation(state: String?, district: String?) {
+    fun getLocation(stateId: Int?, districtId: Int?) {
         val hashMap = HashMap<String, String>()
-        if (CommonUtil.textIsNotEmpty(state)) {
-            hashMap[NetworkConstants.API_PATH_QUERY_STATE] = state!!
+        if (stateId != null && stateId != -1) {
+            hashMap[NetworkConstants.API_PATH_QUERY_STATE_ID] = stateId.toString()
         }
-        if (CommonUtil.textIsNotEmpty(district)) {
-            hashMap[NetworkConstants.API_PATH_QUERY_DISTRICT] = district!!
+        if (districtId != null && districtId != -1) {
+            hashMap[NetworkConstants.API_PATH_QUERY_DISTRICT_ID] = districtId.toString()
         }
         appDisposable.add(apiService
                 .getLocations(hashMap)

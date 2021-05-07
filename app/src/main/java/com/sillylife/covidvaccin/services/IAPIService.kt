@@ -31,7 +31,7 @@ interface IAPIService {
     @GET("${NetworkConstants.V1}/home/partner/")
     fun getHomeData(@QueryMap queryMap: Map<String, String>): Observable<Response<HomeDataResponse>>
 
-    @GET("${NetworkConstants.V2}/covid19/locations/")
+    @GET("${NetworkConstants.V2_1}/covid19/locations/")
     fun getLocations(@QueryMap queryMap: Map<String, String>): Observable<Response<LocationResponse>>
 
     @GET("${NetworkConstants.V2}/covid19/slots/")

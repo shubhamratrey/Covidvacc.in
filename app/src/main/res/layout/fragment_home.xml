@@ -39,20 +39,20 @@
             android:textColor="@color/grey2"
             android:textSize="@dimen/_10ssp" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_50sdp"
-            android:layout_gravity="center"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginEnd="@dimen/_20sdp"
-            android:background="@drawable/ic_phone_bg"
-            android:fontFamily="@font/eudoxus_sans_medium"
-            android:gravity="center_vertical"
-            android:paddingStart="@dimen/_10sdp"
-            android:paddingEnd="@dimen/_10sdp"
-            android:text="Select State"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_16ssp" />
+            android:background="@drawable/ic_search_bg"
+            android:padding="@dimen/_2sdp">
+
+            <org.angmarch.views.NiceSpinner
+                android:id="@+id/stateSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </FrameLayout>
+
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
@@ -67,20 +67,20 @@
             android:textColor="@color/grey2"
             android:textSize="@dimen/_10ssp" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_50sdp"
-            android:layout_gravity="center"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginEnd="@dimen/_20sdp"
-            android:background="@drawable/ic_phone_bg"
-            android:fontFamily="@font/eudoxus_sans_medium"
-            android:gravity="center_vertical"
-            android:paddingStart="@dimen/_10sdp"
-            android:paddingEnd="@dimen/_10sdp"
-            android:text="Select District"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_16ssp" />
+            android:background="@drawable/ic_search_bg"
+            android:padding="@dimen/_2sdp">
+
+            <org.angmarch.views.NiceSpinner
+                android:id="@+id/districtSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </FrameLayout>
+
 
         <FrameLayout
             android:layout_width="match_parent"

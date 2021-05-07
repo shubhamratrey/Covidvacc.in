@@ -4,12 +4,14 @@ object NetworkConstants {
 
     const val V1 = "v1.0"
     const val V2 = "v2.0"
+    const val V2_1 = "v2.1"
 
     const val API_PATH_QUERY_PAGE = "page"
     const val API_PATH_QUERY_STATE = "state"
+    const val API_PATH_QUERY_STATE_ID = "state_id"
     const val API_PATH_QUERY_DISTRICT = "district"
-    const val API_PATH_QUERY_DISTRICT_SLUG = "district_slug"
     const val API_PATH_QUERY_DISTRICT_ID = "district_id"
+    const val API_PATH_QUERY_DISTRICT_SLUG = "district_slug"
     const val API_PATH_QUERY_DATE = "date"
     const val API_PATH_QUERY_FILTER = "filter"
     const val API_PATH_QUERY_Q = "q"

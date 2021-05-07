@@ -46,8 +46,8 @@ class HomeFragmentViewModel(fragment: BaseFragment) : BaseViewModel(),
         return module
     }
 
-    fun getLocation(state: String?, district: String?) {
-        module.getLocation(state, district)
+    fun getLocation(stateId: Int?, districtId: Int?) {
+        module.getLocation(stateId, districtId)
     }
 
 //    fun getHomeData(pageNo: Int) {
