@@ -31,10 +31,10 @@ interface IAPIService {
     @GET("${NetworkConstants.V1}/home/partner/")
     fun getHomeData(@QueryMap queryMap: Map<String, String>): Observable<Response<HomeDataResponse>>
 
-    @GET("${NetworkConstants.V2_1}/covid19/locations/")
+    @GET("${NetworkConstants.V1}/covid19/locations/")
     fun getLocations(@QueryMap queryMap: Map<String, String>): Observable<Response<LocationResponse>>
 
-    @GET("${NetworkConstants.V2}/covid19/slots/")
+    @GET("${NetworkConstants.V1}/covid19/slots/")
     fun getSlots(@QueryMap queryMap: Map<String, String>, @Query("filter") filters: List<String>?): Observable<Response<SlotsResponse>>
 
     @GET("v2/appointment/sessions/public/findByDistrict/")

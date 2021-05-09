@@ -17,7 +17,7 @@ class HomeFragmentModule(val listener: APIModuleListener) : BaseModule() {
         if (districtId != null && districtId != -1) {
             hashMap[NetworkConstants.API_PATH_QUERY_DISTRICT_ID] = districtId.toString()
         }
-        appDisposable.add(apiService
+        appDisposable.add(application.getAPIService(true)
                 .getLocations(hashMap)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).subscribeWith(object : CallbackWrapper<Response<LocationResponse>>() {

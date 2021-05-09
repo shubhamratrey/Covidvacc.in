@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.*
 import android.widget.*
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.sillylife.covidvaccin.R
 import com.sillylife.covidvaccin.models.District
@@ -58,6 +59,9 @@ class HomeFragment : BaseFragment(), HomeFragmentModule.APIModuleListener {
                     stateNames.add(it.name!!)
                 }
                 stateSpinner.attachDataSource(stateNames)
+
+                stateSpinner.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+                districtSpinner.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
                 districtSpinner.attachDataSource(listOf("Select District"))
                 stateSpinner.onSpinnerItemSelectedListener =
                         OnSpinnerItemSelectedListener { parent, view, position, id -> // This example uses String, but your type can be any
@@ -78,6 +82,7 @@ class HomeFragment : BaseFragment(), HomeFragmentModule.APIModuleListener {
                     districtNames.add(it.name!!)
                 }
                 districtSpinner.attachDataSource(districtNames)
+                districtSpinner.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
                 districtSpinner.onSpinnerItemSelectedListener =
                         OnSpinnerItemSelectedListener { parent, view, position, id -> // This example uses String, but your type can be any
                             val item = parent.getItemAtPosition(position) as String
