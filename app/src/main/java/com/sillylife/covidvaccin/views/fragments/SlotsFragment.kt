@@ -121,12 +121,16 @@ class SlotsFragment : BaseFragment(), SlotsModule.APIModuleListener {
         }
         reminderFabButton?.setOnClickListener {
             if (CommonUtil.textIsNotEmpty(mDate) && mDistrictId != -1) {
-                viewModel?.addReminder(0, mDistrictId, mDate)
+                val is18plus = (filterAdapter as FilterAdapter).getSelectedFilters().contains("18")
+                val type = if (is18plus) "18" else ""
+                viewModel?.addReminder(centerId = 0, districtId = mDistrictId, date = mDate, type = type)
             }
         }
         reminderBtn?.setOnClickListener {
             if (CommonUtil.textIsNotEmpty(mDate) && mDistrictId != -1) {
-                viewModel?.addReminder(0, mDistrictId, mDate)
+                val is18plus = (filterAdapter as FilterAdapter).getSelectedFilters().contains("18")
+                val type = if (is18plus) "18" else ""
+                viewModel?.addReminder(centerId = 0, districtId = mDistrictId, date = mDate, type = type)
             }
         }
     }

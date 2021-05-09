@@ -52,6 +52,7 @@ interface IAPIService {
     fun addReminder(
             @Field("center_id") centerId: Int?,
             @Field("district_id") districtId: Int?,
+            @Field("type") type: String?,
             @Field("date") date: String?,
     ): Observable<Response<GenericResponse>>
 

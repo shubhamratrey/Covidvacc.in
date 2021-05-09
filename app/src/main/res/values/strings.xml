@@ -29,7 +29,7 @@
         for this app through Settings > Security > Apps with usage access
     </string>
 
-    <string name="t_c_and_privacy_policy"><![CDATA[By continuing you will accept our <font color=\'#FF005C\'><a style="text-decoration:none" href="https://zoopzam.com/terms-condition">T&C</a></font> and <font color=\'#FF005C\'><a style="text-decoration:none" href="https://zoopzam.com/privacy-policy">P&P</a></font>.]]></string>
+    <string name="t_c_and_privacy_policy"><![CDATA[By continuing you will accept our <font color=\'#FF3700B3\'><a style="text-decoration:none" href="https://app.ratrey.co/terms-condition">T&C</a></font> and <font color=\'#FF3700B3\'><a style="text-decoration:none" href="https://app.ratrey.co/privacy-policy">P&P</a></font>.]]></string>
     <string name="enter_the_code_we_just_texted_you">Enter the code we\njust texted you</string>
     <string name="get_otp">Get OTP</string>
     <string name="submit_otp">Submit OTP</string>

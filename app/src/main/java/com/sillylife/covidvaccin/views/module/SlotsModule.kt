@@ -60,9 +60,9 @@ class SlotsModule(val listener: APIModuleListener) : BaseModule() {
                 }))
     }
 
-    fun addReminder(centerId: Int?, districtId: Int?, date: String?) {
+    fun addReminder(centerId: Int?, districtId: Int?, date: String?, type: String?) {
         appDisposable.add(apiService
-                .addReminder(centerId, districtId, date)
+                .addReminder(centerId = centerId, districtId = districtId, date = date, type = type)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : CallbackWrapper<Response<GenericResponse>>() {

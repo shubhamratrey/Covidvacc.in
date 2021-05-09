@@ -36,8 +36,8 @@ class SlotsViewModel(fragment: BaseFragment) : BaseViewModel(),
         module.getSessions(districtId, date)
     }
 
-    fun addReminder(centerId: Int?, districtId: Int?, date: String?) {
-        module.addReminder(centerId, districtId, date)
+    fun addReminder(centerId: Int?, districtId: Int?, date: String?, type: String?) {
+        module.addReminder(centerId = centerId, districtId = districtId, date = date, type = type)
     }
 
 }
