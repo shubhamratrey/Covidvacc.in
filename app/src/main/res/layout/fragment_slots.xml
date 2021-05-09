@@ -189,12 +189,13 @@
         android:id="@+id/notifyLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="@dimen/_13sdp"
+        android:layout_marginStart="@dimen/_20sdp"
         android:layout_marginTop="@dimen/_60sdp"
-        android:layout_marginEnd="@dimen/_13sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
         android:gravity="center"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="gone"
+        tools:visibility="visible">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="match_parent"
@@ -202,27 +203,29 @@
             android:layout_gravity="center"
             android:fontFamily="@font/eudoxus_sans_bold"
             android:gravity="center"
-            android:maxLines="1"
-            android:text="Notify me when vaccine is available"
-            android:textColor="@color/black"
+            android:text="Get notified when vaccinations are available?"
+            android:textColor="@color/swamp"
             android:textSize="@dimen/_16ssp" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/leftBtn"
+            android:id="@+id/reminderBtn"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/_45sdp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/_10sdp"
-            android:background="@drawable/ic_btn_grey_bg"
+            android:background="@drawable/ic_btn_purple_bg"
+            android:backgroundTint="@color/apple_green"
+            android:drawableStart="@drawable/ic_baseline_notifications_24"
+            android:drawablePadding="@dimen/_2sdp"
             android:elevation="0dp"
             android:fontFamily="@font/eudoxus_sans_medium"
             android:gravity="center"
             android:overScrollMode="never"
             android:paddingStart="@dimen/_15sdp"
             android:paddingEnd="@dimen/_15sdp"
-            android:text="Notify me"
+            android:text="Yes! Notify me"
             android:textAllCaps="false"
-            android:textColor="@color/grey3"
+            android:textColor="@color/white"
             android:textSize="@dimen/_14ssp"
             tools:visibility="visible" />
 
@@ -236,6 +239,7 @@
         android:layout_margin="@dimen/_10sdp"
         android:src="@drawable/ic_baseline_notifications_24"
         android:tint="@color/white"
+        android:visibility="gone"
         app:backgroundTint="@color/apple_green"
         app:fabSize="auto"
         app:tint="@android:color/white" />

@@ -63,10 +63,13 @@ class SlotsAdapter(val context: Context,
                 holder.tvThird.text = "${slot.min_age_limit}+"
                 holder.tvForth.text = "Vaccine: ${slot.vaccine} (${slot.fee_type})"
                 holder.tvSlots.text = "${slot.available_capacity}\nSlots"
-                //Analytics stuff
-                holder.containerView.setOnClickListener {
-                    listener.onSlotClicked(slot, position, it)
+                holder.slotsLayout.setOnClickListener {
+                    listener.onSlotClicked(slot, position, it, "webUrl")
                 }
+                holder.tvSecondary.setOnClickListener {
+                    listener.onSlotClicked(slot, position, it, "address")
+                }
+                //Analytics stuff
                 listener.onImpression(slot, position)
             }
         }
@@ -116,7 +119,7 @@ class SlotsAdapter(val context: Context,
     }
 
     interface Listeners {
-        fun onSlotClicked(slot: Slot, position: Int, view: View?)
+        fun onSlotClicked(slot: Slot, position: Int, view: View?, type:String)
         fun onSendRemindedClicked(slot: Slot, position: Int, view: View?)
         fun onImpression(slot: Slot, itemRank: Int)
     }

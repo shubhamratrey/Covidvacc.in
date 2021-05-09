@@ -2,6 +2,7 @@ package com.sillylife.covidvaccin.views.fragments
 
 import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -123,6 +124,11 @@ class SlotsFragment : BaseFragment(), SlotsModule.APIModuleListener {
                 viewModel?.addReminder(0, mDistrictId, mDate)
             }
         }
+        reminderBtn?.setOnClickListener {
+            if (CommonUtil.textIsNotEmpty(mDate) && mDistrictId != -1) {
+                viewModel?.addReminder(0, mDistrictId, mDate)
+            }
+        }
     }
 
     private fun setAdapter(slots: ArrayList<Slot>) {
@@ -131,9 +137,11 @@ class SlotsFragment : BaseFragment(), SlotsModule.APIModuleListener {
         rcvAll?.visibility = View.VISIBLE
         adapter = SlotsAdapter(context = requireContext(), items = slots,
                 object : SlotsAdapter.Listeners {
-                    override fun onSlotClicked(slot: Slot, position: Int, view: View?) {
-                        if (isAdded && CommonUtil.textIsNotEmpty(slot.covinWebUrl)) {
+                    override fun onSlotClicked(slot: Slot, position: Int, view: View?, type: String) {
+                        if (isAdded && CommonUtil.textIsNotEmpty(slot.covinWebUrl) && type == "webUrl") {
                             startActivity(Intent(requireContext(), WebViewActivity::class.java).putExtra(BundleConstants.WEB_URL, slot.covinWebUrl))
+                        } else if (isAdded && type == "address") {
+                            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?daddr=${slot.address} ${slot.district_name} ${slot.pincode}")))
                         }
                     }
 
