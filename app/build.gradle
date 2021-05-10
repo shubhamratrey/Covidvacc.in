@@ -34,7 +34,7 @@ android {
                 storePassword DEBUG_KEYSTORE_PASSWORD
                 storeFile file("../debug.keystore")
             } catch (ex) {
-                throw new InvalidUserDataException("You should define DEBUG_KEYSTORE_PASSWORD in gradle.properties.")
+                throw new InvalidUserDataException("You should define DEBUG_KEYSTORE_PASSWORD in gradle.properties. ${ex}")
             }
         }
         release {
@@ -44,7 +44,7 @@ android {
                 storePassword RELEASE_KEYSTORE_PASSWORD
                 storeFile file("../release.keystore")
             } catch (ex) {
-                throw new InvalidUserDataException("You should define DEBUG_KEYSTORE_PASSWORD in gradle.properties.")
+                throw new InvalidUserDataException("You should define DEBUG_KEYSTORE_PASSWORD in gradle.properties. ${ex}")
             }
         }
     }

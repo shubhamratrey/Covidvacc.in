@@ -146,7 +146,7 @@ object PhoneNumberUtils {
 
     private fun getSimBasedLocale(@NonNull context: Context): Locale? {
         val tm = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
-        val countryIso = tm?.simCountryIso
+        val countryIso = tm.simCountryIso
         return if (TextUtils.isEmpty(countryIso)) null else Locale("", countryIso)
     }
 

@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.item_filter.*
 
 class FilterAdapter(val context: Context, val list: ArrayList<SlotFilter>, val listener: (Any, Int, String) -> Unit) : RecyclerView.Adapter<FilterAdapter.ViewHolder>() {
 
-    var TAG = FilterAdapter::class.java.simpleName
+    var TAG = FilterAdapter::class.java.simpleName!!
     private var selectedFilters: MutableList<String> = mutableListOf<String>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

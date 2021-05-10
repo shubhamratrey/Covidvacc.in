@@ -97,7 +97,7 @@ object AuthManager {
                 mVerificationId = verificationId
                 mResendToken = token
                 Log.d(TAG, "onCodeSent: $verificationId\n$token")
-                mListener.onCodeSent(verificationId!!)
+                mListener.onCodeSent(verificationId)
 
             }
         }
@@ -111,8 +111,8 @@ object AuthManager {
         } else {
             null
         }
-        signInWithCredentialTask(credential, mListener, mobile, isAnonymous, bearerToken
-                ?: "", isAutoDetect)
+        signInWithCredentialTask(credential, mListener, mobile, isAnonymous,
+            bearerToken, isAutoDetect)
     }
 
     fun signInWithCredentialTask(credential: PhoneAuthCredential, mListener: IAuthCredentialCallback, mobile: String, isAnonymous: Boolean, bearerToken: String?, smsAutoDetect: Boolean) {

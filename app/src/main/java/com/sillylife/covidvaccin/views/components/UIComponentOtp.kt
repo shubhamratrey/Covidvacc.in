@@ -327,7 +327,7 @@ class UIComponentOtp @JvmOverloads constructor(
 
     override fun setTypeface(tf: Typeface?) {
         super.setTypeface(tf)
-        mAnimatorTextPaint?.set(paint)
+        mAnimatorTextPaint.set(paint)
     }
 
     private fun setMaxLength(maxLength: Int) {

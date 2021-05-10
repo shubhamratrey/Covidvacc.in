@@ -40,7 +40,7 @@ object ImageManager {
     }
 
     fun loadImage(target: NotificationTarget, imageUrl: String) {
-        val url = imageUrl ?: ""
+        val url = imageUrl
         GlideApp.with(context).asBitmap().load(url).into(target);
     }
 
@@ -63,7 +63,7 @@ object ImageManager {
     }
 
     fun loadImageCircular(target: NotificationTarget, imageUrl: String) {
-        val url = imageUrl ?: ""
+        val url = imageUrl
         GlideApp.with(context).setDefaultRequestOptions(RequestOptions.circleCropTransform())
                 .asBitmap()
                 .load(url)
@@ -71,7 +71,7 @@ object ImageManager {
     }
 
     fun loadImageCircular(target: AppWidgetTarget, imageUrl: String) {
-        val url = imageUrl ?: ""
+        val url = imageUrl
         GlideApp.with(context).setDefaultRequestOptions(RequestOptions.circleCropTransform())
                 .asBitmap()
                 .load(url)

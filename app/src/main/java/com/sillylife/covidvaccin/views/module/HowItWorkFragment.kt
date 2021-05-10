@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.fragment_how_it_works.*
 class HowItWorkFragment : BaseFragment() {
 
     companion object {
-        val TAG = HowItWorkFragment::class.java.simpleName
+        val TAG = HowItWorkFragment::class.java.simpleName!!
         fun newInstance() = HowItWorkFragment()
     }
 

@@ -27,7 +27,7 @@ import java.util.*
 class HomeFragment : BaseFragment(), HomeFragmentModule.APIModuleListener {
 
     companion object {
-        val TAG = HomeFragment::class.java.simpleName
+        val TAG = HomeFragment::class.java.simpleName!!
         fun newInstance() = HomeFragment()
     }
 

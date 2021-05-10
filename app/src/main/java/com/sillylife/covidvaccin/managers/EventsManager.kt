@@ -10,7 +10,7 @@ import kotlin.math.min
 
 
 object EventsManager {
-    val TAG = EventsManager::class.java.simpleName
+    val TAG = EventsManager::class.java.simpleName!!
 
     @Volatile
     private var mFirebaseAnalytics: FirebaseAnalytics? = null

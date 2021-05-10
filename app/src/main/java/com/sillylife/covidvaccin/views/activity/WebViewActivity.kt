@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.activity_webview.*
 
 class WebViewActivity : BaseActivity() {
 
-    val TAG = WebViewActivity::class.java.simpleName
+    val TAG = WebViewActivity::class.java.simpleName!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -109,13 +109,13 @@ class WebViewActivity : BaseActivity() {
                         }
                         else -> {
                             if (uri?.host?.equals("play.google.com") == true || uri?.authority?.equals("play.google.com") == true) {
-                                if (uri?.query?.contains(APP_PACKAGENAME) == true && appInstalled(APP_PACKAGENAME)) {
+                                if (uri.query?.contains(APP_PACKAGENAME) == true && appInstalled(APP_PACKAGENAME)) {
                                     val launchIntent = packageManager.getLaunchIntentForPackage(APP_PACKAGENAME)
                                     startActivity(launchIntent)
                                 } else {
                                     if (appInstalled("com.android.vending")) {
                                         val intent = Intent(Intent.ACTION_VIEW)
-                                        intent.data = Uri.parse(uri?.toString())
+                                        intent.data = Uri.parse(uri.toString())
                                         startActivity(intent)
                                     } else {
                                         loadUrl(view, uri.toString())

@@ -39,7 +39,7 @@ import java.util.*
 class SlotsFragment : BaseFragment(), SlotsModule.APIModuleListener {
 
     companion object {
-        val TAG = SlotsFragment::class.java.simpleName
+        val TAG = SlotsFragment::class.java.simpleName!!
         fun newInstance(districtSlug: String, districtTitle: String) =
                 SlotsFragment().apply {
                     arguments = Bundle().apply {

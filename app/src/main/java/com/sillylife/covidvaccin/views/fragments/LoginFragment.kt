@@ -39,7 +39,7 @@ import java.util.*
 class LoginFragment : BaseFragment(), LoginFragmentModule.IModuleListener {
 
     companion object {
-        val TAG = LoginFragment::class.java.simpleName
+        val TAG = LoginFragment::class.java.simpleName!!
         fun newInstance() = LoginFragment()
     }
 
