@@ -10,6 +10,9 @@ import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.sillylife.covidvaccin.R
+import com.sillylife.covidvaccin.constants.BundleConstants
+import com.sillylife.covidvaccin.constants.EventConstants
+import com.sillylife.covidvaccin.managers.EventsManager
 import com.sillylife.covidvaccin.models.District
 import com.sillylife.covidvaccin.models.State
 import com.sillylife.covidvaccin.models.responses.LocationResponse
@@ -38,6 +41,7 @@ class HomeFragment : BaseFragment(), HomeFragmentModule.APIModuleListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        EventsManager.setEventName(EventConstants.HOMESCREEN_SCREEN_VIEWED).send()
         viewModel = ViewModelProvider(this, FragmentViewModelFactory(this@HomeFragment))
                 .get(HomeFragmentViewModel::class.java)
         viewModel?.getLocation(-1, -1)
@@ -71,6 +75,9 @@ class HomeFragment : BaseFragment(), HomeFragmentModule.APIModuleListener {
                                     mState = it
                                     mDistrict = null
                                     viewModel?.getLocation(mState?.id, -1)
+                                    EventsManager.setEventName(EventConstants.HOMESCREEN_STATE_CLICKED)
+                                            .addProperty(BundleConstants.STATE_SLUG, mState?.slug)
+                                            .send()
                                     break
                                 }
                             }
@@ -89,6 +96,9 @@ class HomeFragment : BaseFragment(), HomeFragmentModule.APIModuleListener {
                             for (it in response.districts!!) {
                                 if (it.name?.contains(item, true) == true) {
                                     mDistrict = it
+                                    EventsManager.setEventName(EventConstants.HOMESCREEN_DISTRICT_CLICKED)
+                                            .addProperty(BundleConstants.DISTRICT_SLUG, mDistrict?.slug)
+                                            .send()
                                     break
                                 }
                             }

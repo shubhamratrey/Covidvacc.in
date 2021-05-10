@@ -2,8 +2,17 @@ package com.sillylife.covidvaccin.constants
 
 object EventConstants {
 
-    const val SPLASH_SCREEN_VIEWED = "splash_screen_viewed"
+    const val LOGIN_SCREEN_VIEWED = "login_screen_viewed"
+    const val SLOTS_SCREEN_VIEWED = "slots_screen_viewed"
+    const val SLOTS_SCREEN_CALENDER_CLICKED = "slots_screen_calender_clicked"
+    const val SLOTS_SCREEN_DATE_SHIFT_CLICKED = "slots_screen_date_shift_clicked"
+    const val SLOTS_SCREEN_REMINDER_CLICKED = "slots_screen_reminder_clicked"
+    const val SLOTS_SCREEN_ADDRESS_CLICKED = "slots_screen_address_clicked"
+    const val SLOTS_SCREEN_WEB_URL_CLICKED = "slots_screen_web_url_clicked"
+    const val SLOTS_SCREEN_FILTER_CLICKED = "slots_screen_filter_clicked"
     const val HOMESCREEN_SCREEN_VIEWED = "homescreen_screen_viewed"
+    const val HOMESCREEN_STATE_CLICKED = "homescreen_state_clicked"
+    const val HOMESCREEN_DISTRICT_CLICKED = "homescreen_district_clicked"
     const val NAV_BAR_ITEM_CLICKED = "nav_bar_item_clicked"
     const val NAV_BAR_DUTY_STATUS_CLICKED = "nav_bar_duty_status_clicked"
     const val HOME_ADD_PRODUCT_CLICKED = "home_add_product_clicked"

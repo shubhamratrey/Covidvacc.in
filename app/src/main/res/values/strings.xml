@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Covidvacc.in</string>
     <plurals name="day_count_string">
         <item quantity="one">%dd</item>
         <item quantity="other">%dd</item>

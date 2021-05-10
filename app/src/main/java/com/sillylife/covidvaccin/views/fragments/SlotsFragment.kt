@@ -17,6 +17,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sillylife.covidvaccin.R
 import com.sillylife.covidvaccin.constants.BundleConstants
+import com.sillylife.covidvaccin.constants.EventConstants
+import com.sillylife.covidvaccin.managers.EventsManager
 import com.sillylife.covidvaccin.models.Slot
 import com.sillylife.covidvaccin.models.SlotFilter
 import com.sillylife.covidvaccin.models.responses.GenericResponse
@@ -72,6 +74,9 @@ class SlotsFragment : BaseFragment(), SlotsModule.APIModuleListener {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this, FragmentViewModelFactory(this@SlotsFragment))
                 .get(SlotsViewModel::class.java)
+        EventsManager.setEventName(EventConstants.SLOTS_SCREEN_VIEWED)
+            .addProperty(BundleConstants.DISTRICT_SLUG, mDistrictSlug)
+            .send()
         try {
             val sdf = getSimpleDateFormat()
             mDate = sdf?.format(Date())!!
@@ -92,6 +97,10 @@ class SlotsFragment : BaseFragment(), SlotsModule.APIModuleListener {
 
         calenderIv?.setOnClickListener {
             showDatePicker()
+            EventsManager.setEventName(EventConstants.SLOTS_SCREEN_CALENDER_CLICKED)
+                .addProperty(BundleConstants.DATE, mDate)
+                .addProperty(BundleConstants.DISTRICT_SLUG, mDistrictSlug)
+                .send()
         }
 
         if (CommonUtil.textIsNotEmpty(mDistrictTitle)) {
@@ -100,6 +109,11 @@ class SlotsFragment : BaseFragment(), SlotsModule.APIModuleListener {
         rightDateIv?.setOnClickListener {
             val innerDate = getDateString(1)
             if (mDate != innerDate) {
+                EventsManager.setEventName(EventConstants.SLOTS_SCREEN_DATE_SHIFT_CLICKED)
+                    .addProperty(BundleConstants.DATE, mDate)
+                    .addProperty(BundleConstants.SHIFTED_DATE, innerDate)
+                    .addProperty(BundleConstants.DISTRICT_SLUG, mDistrictSlug)
+                    .send()
                 mDate = innerDate
                 adapter = null
                 viewModel?.getSlots(mDistrictSlug, filterAdapter?.getSelectedFilters()!!, mDate)
@@ -111,6 +125,11 @@ class SlotsFragment : BaseFragment(), SlotsModule.APIModuleListener {
         leftDateIv?.setOnClickListener {
             val innerDate = getDateString(-1)
             if (mStartDate != mDate) {
+                EventsManager.setEventName(EventConstants.SLOTS_SCREEN_DATE_SHIFT_CLICKED)
+                    .addProperty(BundleConstants.DATE, mDate)
+                    .addProperty(BundleConstants.SHIFTED_DATE, innerDate)
+                    .addProperty(BundleConstants.DISTRICT_SLUG, mDistrictSlug)
+                    .send()
                 mDate = innerDate
                 adapter = null
                 viewModel?.getSlots(mDistrictSlug, filterAdapter?.getSelectedFilters()!!, mDate)
@@ -124,6 +143,10 @@ class SlotsFragment : BaseFragment(), SlotsModule.APIModuleListener {
                 val is18plus = (filterAdapter as FilterAdapter).getSelectedFilters().contains("18")
                 val type = if (is18plus) "18" else ""
                 viewModel?.addReminder(centerId = 0, districtId = mDistrictId, date = mDate, type = type)
+                EventsManager.setEventName(EventConstants.SLOTS_SCREEN_REMINDER_CLICKED)
+                    .addProperty(BundleConstants.DATE, mDate)
+                    .addProperty(BundleConstants.DISTRICT_SLUG, mDistrictSlug)
+                    .send()
             }
         }
         reminderBtn?.setOnClickListener {
@@ -131,6 +154,10 @@ class SlotsFragment : BaseFragment(), SlotsModule.APIModuleListener {
                 val is18plus = (filterAdapter as FilterAdapter).getSelectedFilters().contains("18")
                 val type = if (is18plus) "18" else ""
                 viewModel?.addReminder(centerId = 0, districtId = mDistrictId, date = mDate, type = type)
+                EventsManager.setEventName(EventConstants.SLOTS_SCREEN_REMINDER_CLICKED)
+                    .addProperty(BundleConstants.DATE, mDate)
+                    .addProperty(BundleConstants.DISTRICT_SLUG, mDistrictSlug)
+                    .send()
             }
         }
     }
@@ -144,8 +171,16 @@ class SlotsFragment : BaseFragment(), SlotsModule.APIModuleListener {
                     override fun onSlotClicked(slot: Slot, position: Int, view: View?, type: String) {
                         if (isAdded && CommonUtil.textIsNotEmpty(slot.covinWebUrl) && type == "webUrl") {
                             startActivity(Intent(requireContext(), WebViewActivity::class.java).putExtra(BundleConstants.WEB_URL, slot.covinWebUrl))
+                            EventsManager.setEventName(EventConstants.SLOTS_SCREEN_WEB_URL_CLICKED)
+                                .addProperty(BundleConstants.DATE, mDate)
+                                .addProperty(BundleConstants.DISTRICT_SLUG, mDistrictSlug)
+                                .send()
                         } else if (isAdded && type == "address") {
                             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?daddr=${slot.address} ${slot.district_name} ${slot.pincode}")))
+                            EventsManager.setEventName(EventConstants.SLOTS_SCREEN_ADDRESS_CLICKED)
+                                .addProperty(BundleConstants.DATE, mDate)
+                                .addProperty(BundleConstants.DISTRICT_SLUG, mDistrictSlug)
+                                .send()
                         }
                     }
 
@@ -259,6 +294,12 @@ class SlotsFragment : BaseFragment(), SlotsModule.APIModuleListener {
                 viewModel?.getSlots(mDistrictSlug, filterAdapter?.getSelectedFilters()!!, mDate)
                 progress?.visibility = View.VISIBLE
                 notifyLayout?.visibility = View.GONE
+                EventsManager.setEventName(EventConstants.SLOTS_SCREEN_FILTER_CLICKED)
+                    .addProperty(BundleConstants.DATE, mDate)
+                    .addProperty(BundleConstants.FILTER_TYPE, any.type)
+                    .addProperty(BundleConstants.FILTER_TYPE, any.value)
+                    .addProperty(BundleConstants.DISTRICT_SLUG, mDistrictSlug)
+                    .send()
             } else if (s == "DateFilter" && any is SlotFilter) {
                 showDatePicker()
             }

@@ -19,6 +19,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.auth.PhoneAuthProvider
 import com.sillylife.covidvaccin.R
 import com.sillylife.covidvaccin.constants.BundleConstants
+import com.sillylife.covidvaccin.constants.EventConstants
+import com.sillylife.covidvaccin.managers.EventsManager
 import com.sillylife.covidvaccin.models.responses.UserResponse
 import com.sillylife.covidvaccin.services.AppDisposable
 import com.sillylife.covidvaccin.utils.CommonUtil
@@ -62,6 +64,7 @@ class LoginFragment : BaseFragment(), LoginFragmentModule.IModuleListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this, FragmentViewModelFactory(this@LoginFragment)).get(LoginFragmentViewModel::class.java)
+        EventsManager.setEventName(EventConstants.LOGIN_SCREEN_VIEWED).send()
         setViews()
     }
 

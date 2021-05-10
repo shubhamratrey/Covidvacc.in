@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-android-extensions'
     id 'kotlin-kapt'
     id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
 }
 
 android {
@@ -11,7 +12,8 @@ android {
     buildToolsVersion "30.0.1"
     def major = 1
     def minor = 0
-    def patch = 0
+    def patch = 1
+    def production = false
 
     defaultConfig {
         applicationId "com.sillylife.covidvaccin"
@@ -24,11 +26,59 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    signingConfigs {
+        debug {
+            try {
+                keyAlias "dexter_keys"
+                keyPassword DEBUG_KEYSTORE_PASSWORD
+                storePassword DEBUG_KEYSTORE_PASSWORD
+                storeFile file("../debug.keystore")
+            } catch (ex) {
+                throw new InvalidUserDataException("You should define DEBUG_KEYSTORE_PASSWORD in gradle.properties.")
+            }
+        }
+        release {
+            try {
+                keyAlias "dexter_keys"
+                keyPassword RELEASE_KEYSTORE_PASSWORD
+                storePassword RELEASE_KEYSTORE_PASSWORD
+                storeFile file("../release.keystore")
+            } catch (ex) {
+                throw new InvalidUserDataException("You should define DEBUG_KEYSTORE_PASSWORD in gradle.properties.")
+            }
+        }
+    }
 
     buildTypes {
-        release {
+        debug {
+            debuggable true
             minifyEnabled false
+            ext.enableCrashlytics = false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+
+            applicationIdSuffix ".debug"
+            buildConfigField("String", "BASE_URL", "\"" + DEBUG_DOMAIN + "\"")
+            resValue "string", "host", DEBUG_HOST
+            resValue "string", "app_name", "Dexterlab CovidVacc.in"
+
+        }
+        releasedebug {
+            debuggable true
+            minifyEnabled false
+            ext.enableCrashlytics = true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+
+            buildConfigField("String", "BASE_URL", "\"" + PROD_DOMAIN + "\"")
+            resValue "string", "host", PROD_HOST
+            resValue "string", "app_name", "CovidVacc.in"
+        }
+        release {
+            production = true
+            initWith releasedebug
+            crunchPngs true
+            debuggable false
         }
     }
     androidExtensions {
@@ -104,7 +154,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-dynamic-links-ktx'
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-config-ktx'
-//    implementation 'com.google.firebase:firebase-crashlytics-ktx'
+    implementation 'com.google.firebase:firebase-crashlytics-ktx'
     implementation 'com.google.firebase:firebase-database-ktx'
 
     //Google
